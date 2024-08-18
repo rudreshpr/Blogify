@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+ <%- include('./partialView/head') %>
+    <title>Home Page</title>
+</head>
+<body>
+   <%- include('./partialView/nav') %>
+   <div class="container mt-4">
+     <h1><%= Blog.title %></h1>
+     <img src="<%= Blog.coverImageURL %>" width="700px">
+     <p><%= Blog.body %></p>
+    </div>
+    
+   </div>
+   <div class="container mt-4">
+     <img src="<%= Blog.createdBy.profileImage %>" width="50px"> <%= Blog.createdBy.fullName %>
+   </div>
+   <div class="container mt-4">
+   <h1>comment</h1>
+   <% if (locals.user) { %>
+    <form action="/blog/comment/<%= Blog._id %>" method="post">
+        <div class="mb-3">
+            <input type="text" class="form-control" id="comment" name="comment" placeholder="Enter your Comment">
+          </div>
+          <button class="btn btn-sm btn-primary">Add</button>
+       </form>
+   <% } %>
+   <div class="mt-3">
+    <% userComments.forEach(element => { %>
+      <div>
+        <img src="<%= element.createdBy.profileImage %>" width="50px"> <%= element.createdBy.fullName %>
+        <pre><%= element.comment %></pre>
+      </div>
+    <% }) %>
+    </div>
+   </div>
+   <%- include('./partialView/scripts') %>
+   
+</body>
+</html>

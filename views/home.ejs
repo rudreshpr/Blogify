@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+ <%- include('./partialView/head') %>
+    <title>Home Page</title>
+</head>
+<body>
+   <%- include('./partialView/nav') %>
+   <div class="container mt-4 row row-cols-4" style="margin:25px;">
+     <% blogs.forEach(element => { %>
+      <div class="col" >
+      <div class="card" style="width: 18rem;height: 18rem;">
+         <img src="<%= element.coverImageURL %>" class="card-img-top">
+         <div class="card-body">
+           <h5 class="card-title"><%= element.title %></h5>
+           <!-- <p class="card-text" ><%= element.body %></p> -->
+           <a href="/blog/<%= element._id %>" class="btn btn-primary">View</a>
+         </div>
+       </div>
+      </div>
+     <% }) %>
+   </div>
+   <%- include('./partialView/scripts') %>
+   <!-- <%= JSON.stringify(user)  %> -->
+</body>
+</html>
